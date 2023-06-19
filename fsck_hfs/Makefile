@@ -10,6 +10,12 @@ fsck_hfs: $(OFILES) dfalib/libdfa.a
 dfalib/libdfa.a: FORCE
 	$(MAKE) -C dfalib -f Makefile libdfa.a
 
+install:
+	install -d $(DESTDIR)$(PREFIX)/sbin
+	install fsck_hfs $(DESTDIR)$(PREFIX)/sbin
+	install -d $(DESTDIR)$(PREFIX)/share/man/man8
+	install fsck_hfs.8 $(DESTDIR)$(PREFIX)/share/man/man8
+
 clean:
 	$(RM) fsck_hfs $(OFILES)
 	$(MAKE) -C dfalib -f Makefile clean

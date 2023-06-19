@@ -1,10 +1,12 @@
 VERSION=556.100.11
+DESTDIR = /
+PREFIX = /usr/local
 
 CFLAGS := -g3 -Wall -I$(PWD)/include -D_FILE_OFFSET_BITS=64 -DLINUX=1 -DBSD=1 -DVERSION=\"$(VERSION)\"
 LDFLAGS := -Wl,--build-id
 SUBDIRS := newfs_hfs fsck_hfs
 
-all clean:
+all clean install:
 	for d in $(SUBDIRS); do $(MAKE) -C $$d -f Makefile $@; done
 
 dist: clean
